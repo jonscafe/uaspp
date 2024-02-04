@@ -53,6 +53,7 @@ for dirname, _, filenames in os.walk('dataset/'):
 
 # In[2]:
 
+st.title("Spotify Chart: Song from 60's til 2023")
 
 hits_dataset_filenames=['dataset-of-10s','dataset-of-00s','dataset-of-90s','dataset-of-80s','dataset-of-70s','dataset-of-60s']
 hits_dataset_dict={}
