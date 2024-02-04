@@ -17,7 +17,7 @@
 
 # In[1]:
 
-
+pip install requirements.txt
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 from sklearn import tree
