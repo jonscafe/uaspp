@@ -433,18 +433,43 @@ import pandas as pd
 # Assuming merged_tsd_rfc is a DataFrame
 # If it's a numpy array, you can convert it to a DataFrame using pd.DataFrame()
 
-# Convert values to numeric
 numeric_values = pd.to_numeric(merged_tsd_rfc.to_numpy().flatten(), errors='coerce')
 
-# Create a scatter plot
-plt.figure(figsize=(10, 6))
-plt.scatter(range(len(numeric_values)), numeric_values, alpha=0.5)
-plt.title('Scatter Plot for merged_tsd_rfc')
-plt.xlabel('Index')
-plt.ylabel('Values')
-plt.show()
+# Function to generate the scatter plot
+def generate_scatter_plot():
+    plt.figure(figsize=(10, 6))
+    plt.scatter(range(len(numeric_values)), numeric_values, alpha=0.5)
+    plt.title('Scatter Plot for merged_tsd_rfc')
+    plt.xlabel('Index')
+    plt.ylabel('Values')
 
+# Streamlit UI
+st.title("Hit Prediction")
 
+# Page 1: Introduction
+st.write("Main page.")
+
+# Page 2: Scatter Plot
+st.header("Scatter Plot Page")
+
+# Button to switch to the scatter plot page
+if st.button("Show Scatter Plot"):
+    st.pyplot(generate_scatter_plot())
+
+# Button to show scatter plot for full_hits_dataset
+if st.button("Show Scatter Plot for full_hits_dataset"):
+    generate_scatter_plot(full_hits_flat, "full_hits_dataset after multiplication")
+    st.pyplot()
+
+# Button to show scatter plot for top_songs_dataset
+if st.button("Show Scatter Plot for top_songs_dataset"):
+    generate_scatter_plot(top_songs_flat, "top_songs_dataset after multiplication")
+    st.pyplot()
+
+# Button to show scatter plot for most_songs_dataset
+if st.button("Show Scatter Plot for most_songs_dataset"):
+    generate_scatter_plot(most_songs_flat, "most_songs_dataset after multiplication")
+    st.pyplot()
 # In[35]:
 
 
@@ -505,8 +530,8 @@ import streamlit as st
 st.write("Top Song Dataset")
 st.dataframe(merged_tsd_rfc)
 
-st.title("Search in Top Song Dataset")
-search_query = st.text_input("Enter a search query:")
+st.title("Prediksi Lagu Hits")
+search_query = st.text_input("Input lagu:")
 filtered_df = merged_tsd_rfc[merged_tsd_rfc.apply(lambda row: any(search_query.lower() in str(cell).lower() for cell in row), axis=1)]
 st.write("Result:")
 st.dataframe(filtered_df)
