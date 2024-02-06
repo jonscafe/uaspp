@@ -12,8 +12,7 @@
 
 # - Bagaimana trend musik di dunia berdasarkan Spotify dari tahun 1960-2023?
 # - Musik seperti apa yang populer dalam rentang waktu tersebut?
-# Disable Warning pyplot
-st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
 # ## Import Semua Packages/Library yang Digunakan
 
@@ -36,6 +35,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
 
+# Disable Warning pyplot
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # folder read
 import os
