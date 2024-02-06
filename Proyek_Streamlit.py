@@ -250,12 +250,6 @@ plt.tight_layout()
 temp_file_path = "temp_scatter_plot.png"
 plt.savefig(temp_file_path, format="png")
 
-# Display the plot in Streamlit
-st.image(temp_file_path, use_column_width=True)
-
-# Remove the temporary file after displaying
-import os
-os.remove(temp_file_path)
 
 
 
@@ -443,35 +437,6 @@ def generate_scatter_plot():
     plt.xlabel('Index')
     plt.ylabel('Values')
 
-# Streamlit UI
-st.title("Hit Prediction")
-
-# Page 1: Introduction
-st.write("Main page.")
-
-# Page 2: Scatter Plot
-st.header("Scatter Plot Page")
-
-# Button to switch to the scatter plot page
-if st.button("Show Scatter Plot"):
-    st.pyplot(generate_scatter_plot())
-
-# Button to show scatter plot for full_hits_dataset
-if st.button("Show Scatter Plot for full_hits_dataset"):
-    generate_scatter_plot(full_hits_flat, "full_hits_dataset after multiplication")
-    st.pyplot()
-
-# Button to show scatter plot for top_songs_dataset
-if st.button("Show Scatter Plot for top_songs_dataset"):
-    generate_scatter_plot(top_songs_flat, "top_songs_dataset after multiplication")
-    st.pyplot()
-
-# Button to show scatter plot for most_songs_dataset
-if st.button("Show Scatter Plot for most_songs_dataset"):
-    generate_scatter_plot(most_songs_flat, "most_songs_dataset after multiplication")
-    st.pyplot()
-# In[35]:
-
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -505,30 +470,49 @@ def plot_feature_by_category(dataset, title):
     plt.xticks(rotation=45)
     plt.show()
 
-# Plot for full_hits_dataset
-plot_feature_by_category(full_hits_dataset, 'Popularity of Music - Full Hits Dataset')
-
-# Plot for top_songs_dataset
-plot_feature_by_category(top_songs_dataset, 'Popularity of Music - Top Songs Dataset')
-
-# Plot for most_songs_dataset
-plot_feature_by_category(most_songs_dataset, 'Popularity of Music - Most Songs Dataset')
-
-
 # In[59]:
-
 
 import streamlit as st
 
 # Assuming you have the dataframes merged_msd_rfc and merged_tsd_rfc
 
-# Display Most Song Dataset
-# st.write("Most Song Dataset")
-# st.dataframe(merged_msd_rfc)
+    # Display Most Song Dataset
+st.sidebar.title('Navigation')
+selection = st.sidebar.radio("Go to", ['Dataset Analysis', 'Scatter Plot'])
 
-# Display Top Song Dataset
-st.write("Top Song Dataset")
-st.dataframe(merged_tsd_rfc)
+if selection == 'Dataset Analysis':
+    st.titte('Dataset Analysis')
+    st.write("Most Song Dataset")
+    st.dataframe(merged_msd_rfc)
+    # Display Top Song Dataset
+    st.write("Top Song Dataset")
+    st.dataframe(merged_tsd_rfc)
+    
+elif selection == 'Scatter Plot':
+    # Page 2: Scatter Plot
+    st.header("Scatter Plot Page")
+# Button to switch to the scatter plot page
+    if st.button("Show Scatter Plot"):
+        st.pyplot(generate_scatter_plot())
+    # Button to show scatter plot for full_hits_dataset
+    if st.button("Show Scatter Plot for full_hits_dataset"):
+        generate_scatter_plot(full_hits_flat, "full_hits_dataset after multiplication")
+        st.pyplot()
+    # Button to show scatter plot for top_songs_dataset
+    if st.button("Show Scatter Plot for top_songs_dataset"):
+        generate_scatter_plot(top_songs_flat, "top_songs_dataset after multiplication")
+        st.pyplot()
+    # Button to show scatter plot for most_songs_dataset
+    if st.button("Show Scatter Plot for most_songs_dataset"):
+        generate_scatter_plot(most_songs_flat, "most_songs_dataset after multiplication")
+        st.pyplot()
+
+    plot_feature_by_category(full_hits_dataset, 'Popularity of Music - Full Hits Dataset')
+    # Plot for top_songs_dataset
+    plot_feature_by_category(top_songs_dataset, 'Popularity of Music - Top Songs Dataset')
+    # Plot for most_songs_dataset
+    plot_feature_by_category(most_songs_dataset, 'Popularity of Music - Most Songs Dataset')
+
 
 st.title("Prediksi Lagu Hits")
 search_query = st.text_input("Input lagu:")
