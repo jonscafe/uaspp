@@ -481,7 +481,7 @@ st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", ['Dataset Analysis', 'Scatter Plot'])
 
 if selection == 'Dataset Analysis':
-    st.titte('Dataset Analysis')
+    st.title('Dataset Analysis')
     st.write("Most Song Dataset")
     st.dataframe(merged_msd_rfc)
     # Display Top Song Dataset
