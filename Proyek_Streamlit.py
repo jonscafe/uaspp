@@ -331,6 +331,7 @@ def plot_feature_by_category(dataset, title):
     plt.ylabel('Mean Value')
     plt.xticks(rotation=45)
     plt.show()
+    st.pyplot()
 
 import streamlit as st
 
