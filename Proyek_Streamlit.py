@@ -347,7 +347,7 @@ def generate_scatter_plot(data, title):
 
 # Navbar
 st.sidebar.title('Navigation')
-selection = st.sidebar.selectbox("Go to", ['Home', 'Dataset Analysis', 'Scatter Plot', 'Dataset'], index=0)
+selection = st.sidebar.selectbox("Go to", ['Home', 'Dataset Analysis', 'Scatter Plot', 'Popularity of Music', 'Dataset'], index=0)
 
 # Content based on selection
 if selection == 'Home':
@@ -375,8 +375,15 @@ elif selection == 'Scatter Plot':
     if st.button("Show Scatter Plot for most_songs_dataset"):
         generate_scatter_plot(most_songs_flat, "most_songs_dataset after multiplication")
 
+elif selection == 'Popularity of Music':
+    st.title('Popularity of Music')
+    st.subheader('Full Hits Dataset')
     plot_feature_by_category(full_hits_dataset, 'Popularity of Music - Full Hits Dataset')
+    
+    st.subheader('Top Songs Dataset')
     plot_feature_by_category(top_songs_dataset, 'Popularity of Music - Top Songs Dataset')
+    
+    st.subheader('Most Songs Dataset')
     plot_feature_by_category(most_songs_dataset, 'Popularity of Music - Most Songs Dataset')
 
 elif selection == 'Dataset':
