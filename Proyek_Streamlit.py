@@ -391,10 +391,10 @@ elif selection == 'Popularity of Music':
     plot_feature_by_category(most_songs_dataset, 'Popularity of Music - Most Songs Dataset')
 
     st.subheader('Merged Most Songs Dataset')
-    plot_feature_by_category(merged_msd_rfc, 'Popularity of Music - Most Songs Dataset')
+    plot_feature_by_category(merged_msd_rfc, 'Popularity of Music - Merged Most Songs Dataset')
 
     st.subheader('Merged Top Songs Dataset')
-    plot_feature_by_category(merged_tsd_rfc, 'Popularity of Music - Most Songs Dataset')
+    plot_feature_by_category(merged_tsd_rfc, 'Popularity of Music - Merged Top Songs Dataset')
 
 elif selection == 'Dataset':
     st.title('Dataset')
