@@ -347,10 +347,17 @@ def generate_scatter_plot(data, title):
 
 # Navbar
 st.sidebar.title('Navigation')
-selection = st.sidebar.selectbox("Go to", ['Select Page', 'Dataset Analysis', 'Scatter Plot', 'Dataset'], index=0)
+selection = st.sidebar.selectbox("Go to", ['Home', 'Dataset Analysis', 'Scatter Plot', 'Dataset'], index=0)
 
 # Content based on selection
-if selection == 'Dataset Analysis':
+if selection == 'Home':
+    st.title("Prediksi Lagu Hits")
+    search_query = st.text_input("Input lagu:")
+    filtered_df = merged_tsd_rfc[merged_tsd_rfc.apply(lambda row: any(search_query.lower() in str(cell).lower() for cell in row), axis=1)]
+    st.write("Result:")
+    st.dataframe(filtered_df)
+    
+elif selection == 'Dataset Analysis':
     st.title('Dataset Analysis')
     st.write("Most Song Dataset")
     st.dataframe(merged_msd_rfc)
@@ -381,13 +388,6 @@ elif selection == 'Dataset':
     st.write("Full Hits Dataset")
     st.dataframe(full_hits_dataset)
 
-
-
-st.title("Prediksi Lagu Hits")
-search_query = st.text_input("Input lagu:")
-filtered_df = merged_tsd_rfc[merged_tsd_rfc.apply(lambda row: any(search_query.lower() in str(cell).lower() for cell in row), axis=1)]
-st.write("Result:")
-st.dataframe(filtered_df)
 
 # - Conclution pertanyaan 1
 # - Conclution pertanyaan 2
