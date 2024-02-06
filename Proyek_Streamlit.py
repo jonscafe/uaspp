@@ -12,6 +12,8 @@
 
 # - Bagaimana trend musik di dunia berdasarkan Spotify dari tahun 1960-2023?
 # - Musik seperti apa yang populer dalam rentang waktu tersebut?
+# Disable Warning pyplot
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # ## Import Semua Packages/Library yang Digunakan
 
