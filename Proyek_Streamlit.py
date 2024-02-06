@@ -304,6 +304,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 numeric_values = pd.to_numeric(merged_tsd_rfc.to_numpy().flatten(), errors='coerce')
+combined_dataset = pd.concat([most_songs_dataset, top_songs_dataset, hits_songs_dataset], ignore_index=True)
+
 
 def generate_scatter_plot():
     plt.figure(figsize=(10, 6))
@@ -389,12 +391,9 @@ elif selection == 'Popularity of Music':
     
     st.subheader('Most Songs Dataset')
     plot_feature_by_category(most_songs_dataset, 'Popularity of Music - Most Songs Dataset')
-
-    st.subheader('Merged Most Songs Dataset')
-    plot_feature_by_category(merged_msd_rfc, 'Popularity of Music - Merged Most Songs Dataset')
-
-    st.subheader('Merged Top Songs Dataset')
-    plot_feature_by_category(merged_tsd_rfc, 'Popularity of Music - Merged Top Songs Dataset')
+    
+    st.subheader('Combined Songs Dataset')
+    plot_feature_by_category(combined_dataset, 'Popularity of Music - Combined Songs Dataset')
 
 elif selection == 'Dataset':
     st.title('Dataset')
