@@ -73,7 +73,7 @@ top_songs_dataset.drop(top_songs_dataset.iloc[:, 2:13], inplace=True, axis=1)
 most_songs_dataset=pd.read_csv('dataset/spotify_songs.csv')
 most_songs_dataset.drop(most_songs_dataset.iloc[:, 3:11], inplace=True, axis=1)
 most_songs_dataset.drop(['track_id','duration_ms','loudness'], inplace=True, axis=1)
-most_songs_dataset
+# most_songs_dataset
 
 
 for l in most_songs_dataset.columns:
@@ -96,7 +96,7 @@ for l in top_songs_dataset.columns:
         print(l)
         
 # top_songs_dataset.rename(columns={"track_name":"track","track_artist":"artist"}, inplace=True)
-top_songs_dataset
+# top_songs_dataset
 top_songs_dataset=top_songs_dataset.set_axis(['track','artist','tempo','key','mode','danceability','valence','energy','acousticness','instrumentalness','liveness','speechiness'], axis="columns")
 for l in top_songs_dataset.columns:
     if l not in full_hits_dataset.columns:
@@ -334,9 +334,22 @@ def plot_feature_by_category(dataset, title):
 
 import streamlit as st
 
-st.sidebar.title('Navigation')
-selection = st.sidebar.radio("Go to", ['Dataset Analysis', 'Scatter Plot'])
+import streamlit as st
 
+# Function to generate scatter plot
+def generate_scatter_plot(data, title):
+    plt.figure(figsize=(10, 6))
+    plt.scatter(range(len(data)), data, alpha=0.5)
+    plt.title(title)
+    plt.xlabel('Index')
+    plt.ylabel('Values')
+    st.pyplot()
+
+# Navbar
+st.sidebar.title('Navigation')
+selection = st.sidebar.selectbox("Go to", ['Select Page', 'Dataset Analysis', 'Scatter Plot', 'Dataset'], index=0)
+
+# Content based on selection
 if selection == 'Dataset Analysis':
     st.title('Dataset Analysis')
     st.write("Most Song Dataset")
@@ -347,20 +360,27 @@ if selection == 'Dataset Analysis':
 elif selection == 'Scatter Plot':
     st.header("Scatter Plot Page")
     if st.button("Show Scatter Plot"):
-        st.pyplot(generate_scatter_plot())
+        generate_scatter_plot(np.random.randn(100), "Random Scatter Plot")
     if st.button("Show Scatter Plot for full_hits_dataset"):
         generate_scatter_plot(full_hits_flat, "full_hits_dataset after multiplication")
-        st.pyplot()
     if st.button("Show Scatter Plot for top_songs_dataset"):
         generate_scatter_plot(top_songs_flat, "top_songs_dataset after multiplication")
-        st.pyplot()
     if st.button("Show Scatter Plot for most_songs_dataset"):
         generate_scatter_plot(most_songs_flat, "most_songs_dataset after multiplication")
-        st.pyplot()
 
     plot_feature_by_category(full_hits_dataset, 'Popularity of Music - Full Hits Dataset')
     plot_feature_by_category(top_songs_dataset, 'Popularity of Music - Top Songs Dataset')
     plot_feature_by_category(most_songs_dataset, 'Popularity of Music - Most Songs Dataset')
+
+elif selection == 'Dataset':
+    st.title('Dataset')
+    st.write("Most Songs Dataset")
+    st.dataframe(most_songs_dataset)
+    st.write("Top Songs Dataset")
+    st.dataframe(top_songs_dataset)
+    st.write("Full Hits Dataset")
+    st.dataframe(full_hits_dataset)
+
 
 
 st.title("Prediksi Lagu Hits")
