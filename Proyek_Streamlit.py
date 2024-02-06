@@ -304,7 +304,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 numeric_values = pd.to_numeric(merged_tsd_rfc.to_numpy().flatten(), errors='coerce')
-combined_dataset = pd.concat([most_songs_dataset, top_songs_dataset, hits_songs_dataset], ignore_index=True)
+combined_dataset = pd.concat([most_songs_dataset, top_songs_dataset, full_hits_dataset], ignore_index=True)
 
 
 def generate_scatter_plot():
